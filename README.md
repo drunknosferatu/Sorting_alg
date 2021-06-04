@@ -1,3 +1,3 @@
 # Sorting_alg
 
-#Git inicial para o trabalho de ED2
+##Git inicial para o trabalho de ED2
