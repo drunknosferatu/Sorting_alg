@@ -1,5 +1,6 @@
 #include "sorting.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 
 //*********************HeapSort*********************************************
 
@@ -46,3 +47,23 @@ void HeapSort(List *l)
 }
 
 //*****************************************************************************
+
+
+
+//**************************COUNTING SORT*****************************************
+
+void CountingSort(List *l){
+	int max=l->elements[0];
+	int i;
+	for(i=1;i<l->length;i++) if(max<l->elements[i]) max=l->elements[i];
+	int *c=(int*) malloc((max+1)*sizeof(tpElem));
+	for(i=0;i<=max;i++) c[i]=0;
+	int *sorted=(int*) malloc (l->length*sizeof(tpElem));
+	for(i=0;i<l->length;i++) c[l->elements[i]]++;
+	for(i=1;i<=max;i++) c[i]=c[i]+c[i-1];
+	for(i=(l->length-1);i>=0;i--){
+	       	sorted[c[l->elements[i]]-1]=l->elements[i];
+		c[l->elements[i]]--;
+	}
+	l->elements=sorted;
+}

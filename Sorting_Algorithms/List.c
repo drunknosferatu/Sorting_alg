@@ -3,8 +3,8 @@
 
 void buildList(List *l)
 {
-    l->elements = (tpElem*)malloc(maxSize * sizeof(tpElem));
-    l->length = 0;
+	l->elements = (tpElem*)malloc(maxSize * sizeof(tpElem));
+	l->length = 0;
 }
 
 
@@ -14,8 +14,8 @@ int insert(List *l, tpElem elem)
         return Error;
     else
     {
-        l->elements[l->length] = elem;
-        l->length++;
+        l->elements[(l->length)] = elem;
+        (l->length)++;
     }
     return Success;
 }
