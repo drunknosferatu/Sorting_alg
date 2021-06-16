@@ -1,7 +1,7 @@
 #include "sorting.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <math.h>
 //*********************HeapSort*********************************************
 
 void MaxHeapfy(List *l, int i)
@@ -52,18 +52,40 @@ void HeapSort(List *l)
 
 //**************************COUNTING SORT*****************************************
 
-void CountingSort(List *l){
-	int max=l->elements[0];
+void CountingSort(List *l,List *aux, int max){
 	int i;
-	for(i=1;i<l->length;i++) if(max<l->elements[i]) max=l->elements[i];
 	int *c=(int*) malloc((max+1)*sizeof(tpElem));
 	for(i=0;i<=max;i++) c[i]=0;
 	int *sorted=(int*) malloc (l->length*sizeof(tpElem));
-	for(i=0;i<l->length;i++) c[l->elements[i]]++;
+	for(i=0;i<l->length;i++) c[aux->elements[i]]++;
 	for(i=1;i<=max;i++) c[i]=c[i]+c[i-1];
 	for(i=(l->length-1);i>=0;i--){
-	       	sorted[c[l->elements[i]]-1]=l->elements[i];
-		c[l->elements[i]]--;
+	       	sorted[c[aux->elements[i]]-1]=l->elements[i];
+		c[aux->elements[i]]--;
 	}
 	l->elements=sorted;
+	free(c);
 }
+//*****************************************************************************
+
+//**************************** RADIX SORT**************************************
+void RadixSort(List *l){
+	int max=l->elements[0];
+	int i,j,ordem,k,aux;
+	for (i=1;i<l->length;i++) if(max<l->elements[i]) max=l->elements[i];
+	for (ordem=0;max/(int)(pow(10,ordem))!=0;ordem++);
+	ordem--;
+	List temp;
+	buildList(&temp);
+	temp.length=l->length;
+	for(i=0;i<=ordem;i++){
+		for(k=0;k<l->length;k++){ 
+			temp.elements[k]=l->elements[k];
+			for(j=ordem;j>i;j--) temp.elements[k]%=(int)pow(10,j);
+			temp.elements[k]/=pow(10,j);
+		}
+		CountingSort(l,&temp,max);
+	}
+	free(temp.elements);
+}
+

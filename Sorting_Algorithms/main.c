@@ -3,22 +3,22 @@
 
 
 int main(void){
-    List *arr=(List*) malloc(sizeof(List));
-    buildList(arr); 
+    List arr;
+    buildList(&arr); 
     int i, j;
     tpElem x;
-    for(i = 0; i < 5; i++)
+    for(i = 0; i < maxSize; i++)
     {
-        scanf("%d", &x);
-       j = insert(arr, x);
+       x=rand()%maxSize;
+       j = insert(&arr, x);
        if(j == Error)
         {    
             printf("Error!\n");
             break;
         }    
     }
-    printList(arr);
-    CountingSort(arr);
-    printList(arr);
+    RadixSort(&arr);
+    printList(&arr);
+    free(arr.elements);
    return 0;
 }

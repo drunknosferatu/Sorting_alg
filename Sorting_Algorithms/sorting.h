@@ -10,5 +10,7 @@ void BuildMaxHeap(List *l);                // Constroe uma max-heap a partir de 
 
 void HeapSort(List *l);                     // Ordena, em ordem crescente, os elementos da lista
 
-void CountingSort(List *l);
+void CountingSort(List *l,List *aux, int max);
+
+void RadixSort(List *l);
 //*********************************************************************************************
