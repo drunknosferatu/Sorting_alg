@@ -1,5 +1,5 @@
 #include "sorting.h"
-
+#include <time.h>
 
 
 int main(void){
@@ -7,9 +7,10 @@ int main(void){
     buildList(&arr); 
     int i, j;
     tpElem x;
+    srand(time(NULL));
     for(i = 0; i < maxSize; i++)
     {
-       x = rand() % maxSize;
+       x = rand() % (maxSize - 1);
        j = insert(&arr, x);
        if(j == Error)
         {    
@@ -18,7 +19,8 @@ int main(void){
         }    
     }
     printList(arr);
-    RadixSort(&arr);
+    //RadixSort(&arr);
+    quicksort(&arr, 0, arr.length - 1);
     printList(arr);
     destroyList(&arr);
    return 0;

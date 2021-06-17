@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define maxSize 14
+#define maxSize 6
 
 #define Success 1
 #define Error   0

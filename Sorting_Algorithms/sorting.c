@@ -57,7 +57,8 @@ void CountingSort(List *l, List *aux, int max){
 	tpElem *sorted = (tpElem*) malloc (l->length * sizeof(tpElem));
 	for(i = 0;i < l->length; i++) c[aux->elements[i]]++;
 	for(i = 1; i <= max; i++) c[i] = c[i] + c[i-1];
-	for(i = (l->length-1); i >= 0; i--){
+	for(i = (l->length-1); i >= 0; i--)
+        {
 	       	sorted[c[aux->elements[i]] - 1] = l->elements[i];
 		c[aux->elements[i]]--;
 	}
@@ -67,7 +68,8 @@ void CountingSort(List *l, List *aux, int max){
 //*****************************************************************************
 
 //**************************** RADIX SORT**************************************
-void RadixSort(List *l){
+void RadixSort(List *l)
+{
 	int max = l->elements[0];
 	int i, j, ordem, k, aux;
 	for (i = 1; i < l->length; i++) if(max < l->elements[i]) max = l->elements[i];
@@ -76,8 +78,10 @@ void RadixSort(List *l){
 	List temp;
 	buildList(&temp);
 	temp.length = l->length;
-	for(i = 0; i <= ordem; i++){
-		for(k = 0;k < l->length; k++){ 
+	for(i = 0; i <= ordem; i++)
+        {
+		for(k = 0;k < l->length; k++)
+                { 
 			temp.elements[k] = l->elements[k];
 			for(j = ordem; j > i; j--) temp.elements[k] %= (int)pow(10, j);
 			temp.elements[k] /= pow(10, j);
@@ -87,3 +91,57 @@ void RadixSort(List *l){
 	free(temp.elements);
 }
 
+
+//*******************************QuickSort*******************************************
+int RandomInteger (int low, int high)
+{
+    int k;
+    double d;
+    
+    d = (double) rand () / ((double) RAND_MAX + 1);
+    k = d * (high - low + 1);
+    return low + k;
+}
+
+
+
+long partition(List *l, long ini, long end)
+{
+    long pivot = l->elements[end];
+    long i = ini - 1;
+    for (long j = ini; j < end ; j++)
+    {
+        if (l->elements[j] <= pivot)
+        {
+            i++;
+            swap(l, i, j);
+        }
+    }
+    swap(l, i + 1, end);
+    return i + 1;
+}
+
+
+
+long random_partition(List *l, long ini, long end)
+{
+    long k = RandomInteger(ini, end);
+    swap(l, k, end);
+    return partition(l, ini, end);
+}
+
+
+
+void quicksort(List *l, long ini, long end)
+{
+    long pivot;
+    if (ini < end)
+    {
+        pivot = random_partition(l, ini, end);
+        quicksort(l, ini, pivot - 1);
+        quicksort(l, pivot + 1, end);
+    }
+
+}
+
+//********************************************************************************************

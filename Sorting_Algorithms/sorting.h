@@ -16,3 +16,14 @@ void HeapSort(List *l);                     // Ordena, em ordem crescente, os el
 void CountingSort(List *l,List *aux, int max);
 
 void RadixSort(List *l);
+
+
+
+int RandomInteger (int low, int high);                 //Funcao que gera numeros aleatorios. Foi criada 
+                                                       // por Eric Roberts, autor do livro The Art and Science of C
+
+long partition(List *l, long ini, long end);
+
+long random_partition(List *l, long ini, long end);
+
+void quicksort(List *l, long ini, long end);
