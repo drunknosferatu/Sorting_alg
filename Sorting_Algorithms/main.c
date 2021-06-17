@@ -9,7 +9,7 @@ int main(void){
     tpElem x;
     for(i = 0; i < maxSize; i++)
     {
-       x=rand()%maxSize;
+       x = rand() % maxSize;
        j = insert(&arr, x);
        if(j == Error)
         {    
@@ -17,8 +17,9 @@ int main(void){
             break;
         }    
     }
+    printList(arr);
     RadixSort(&arr);
-    printList(&arr);
-    free(arr.elements);
+    printList(arr);
+    destroyList(&arr);
    return 0;
 }

@@ -21,18 +21,18 @@ int insert(List *l, tpElem elem)
 }
 
 
-void printList(List *l)
+void printList(List l)
 {
     int i;
-    for(i = 0; i < l->length; i++)
-        printf("%d\t", l->elements[i]);
+    for(i = 0; i < l.length; i++)
+        printf("%d\t", l.elements[i]);
     printf("\n");
 }
 
 
 void destroyList(List *l)
 {
-    l->length = -1;
+    l->length = 0;
     free(l->elements);
 }
 

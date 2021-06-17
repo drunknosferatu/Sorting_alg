@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define maxSize 1000000
+#define maxSize 400000
 
 #define Success 1
 #define Error   0
@@ -10,8 +10,8 @@
 typedef int tpElem;                        // Podem mudar o nome deste tipo
 
 
-//Definicao do tipo List
-typedef struct
+
+typedef struct                             //Definicao do tipo List
 {
     tpElem *elements;
     int length;
@@ -21,7 +21,7 @@ void buildList(List *l);                   // Cria lista como tamanho inicial ig
 
 int insert(List *l, tpElem elem);          // Insere elementos na lista
 
-void printList(List *l);                   // Imprime os elementos da lista
+void printList(List l);                   // Imprime os elementos da lista
 
 void destroyList(List *l);                 // Libera a memoria alocada para a lista e a destroi
 
