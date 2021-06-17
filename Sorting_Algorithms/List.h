@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define maxSize 400000
+#define maxSize 14
 
 #define Success 1
 #define Error   0
