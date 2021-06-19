@@ -18,47 +18,57 @@ double QuickMeasureRuntime(quick alg, List l);   // Mede o tempo de execussão e
 
 
 int main(void){
-    
-    
-   /*******************TESTE****************************************************
     List arr;
-    buildList(&arr); 
-    int i, j;
-    tpElem x;
-    srand(time(NULL));
-    for(i = 0; i < maxSize; i++)
+    int k;
+    for(int method=1;method<6;method++)
     {
-       x = rand() % (maxSize - 1);
-       j = insert(&arr, x);
-       if(j == Error)
-        {    
-            printf("Error!\n");
-            break;
-        }    
-    }
-    //RadixSort(&arr);
-    QuickSort(&arr, 0, arr.length - 1);
-    printList(arr);
-    destroyList(&arr);
-    ***************************************************************************/
-    /***************************TESTE*******************************************
-    List arr;
-    
-    for(long i = 1000; i <= maxSize; i *= 10)
-    {
-        buildList(&arr);
-        srand(time(NULL));
-        for(long j = 0; j < i; j++)
-        {
-            int k = insert(&arr, rand() % (maxSize - 1));
-            if(k == Error)
-                break;
-        }
-        printf("%.10lf\n", MeasureRuntime(HeapSort, arr));
-        destroyList(&arr);
-    }
-     */
-   return 0;
+	for(long i=1000, i<=maxSize,i*=10)
+	{
+		buildList(&arr);
+		srand(time(NULL));
+		for(long j = 0; j < i; j++)
+        	{
+            		k = insert(&arr, rand() % (maxSize - 1));
+            		if(k == Error)
+                		break;
+        	}
+		switch(method)
+		{	
+			case 1:
+ 	       			printf("%.10lf\n", MeasureRuntime(HeapSort, arr));
+				printf("%.10lf\n", MeasureRuntime(HeapSort, arr));
+				for(long l = 0; l < (arr->length)/2 ; l++) swap(&arr, l, (arr->length - 1) - l);
+				printf("%.10lf\n", MeasureRuntime(HeapSort, arr);
+				break;
+			case 2:
+        			printf("%.10lf\n", MeasureRuntime(RadixSort, arr));
+				printf("%.10lf\n", MeasureRuntime(RadixSort, arr));
+				for(long l = 0; l < (arr->length)/2 ; l++) swap(&arr, l, (arr->length - 1) - l);
+				printf("%.10lf\n", MeasureRuntime(RadixSort, arr);
+				break;
+			case 3:
+        			printf("%.10lf\n", MeasureRuntime(BubbleSort, arr));
+				printf("%.10lf\n", MeasureRuntime(BubbleSort, arr));
+				for(long l = 0; l < (arr->length)/2 ; l++) swap(&arr, l, (arr->length - 1) - l);
+				printf("%.10lf\n", MeasureRuntime(BubbleSort, arr);
+				break;
+			case 4:
+        			printf("%.10lf\n", MeasureRuntime(OptimizedBubbleSort, arr));
+				printf("%.10lf\n", MeasureRuntime(OptimizedBubbleSort, arr));
+				for(long l = 0; l < (arr->length)/2 ; l++) swap(&arr, l, (arr->length - 1) - l);
+				printf("%.10lf\n", MeasureRuntime(OptimizedBubbleSort, arr);
+				break;
+			case 5:
+        			printf("%.10lf\n", MeasureRuntime(QuickSort, arr));
+				printf("%.10lf\n", MeasureRuntime(QuickSort, arr));
+				for(long l = 0; l < (arr->length)/2 ; l++) swap(&arr, l, (arr->length - 1) - l);
+				printf("%.10lf\n", MeasureRuntime(QuickSort, arr);
+				break;
+		}
+		destroyList(&arr);
+    	}
+     }
+	       return 0;
 }
 
 
