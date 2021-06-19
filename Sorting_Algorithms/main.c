@@ -2,7 +2,25 @@
 #include <time.h>
 
 
+
+typedef void (*algorithm)(List *);              // Ponteiro para os algoritmos de ordenacao
+                                                // exceto quicksort, pois este tem mais parametros que os outros
+
+typedef void (*quick)(List *, long, long);      // Ponteiro para o quicksort
+
+
+
+double MeasureRuntime(algorithm alg, List l);   // Mede o tempo de execussão empirico de um algoritmo de ordenacao
+
+
+double QuickMeasureRuntime(quick alg, List l);   // Mede o tempo de execussão empirico do quicksort
+
+
+
 int main(void){
+    
+    
+    /********************TESTE - ORDENACAO*********************************
     List arr;
     buildList(&arr); 
     int i, j;
@@ -18,10 +36,47 @@ int main(void){
             break;
         }    
     }
-    printList(arr);
     //RadixSort(&arr);
-    quicksort(&arr, 0, arr.length - 1);
-    printList(arr);
+    //quicksort(&arr, 0, arr.length - 1);
+    printf("Tempo = %lf\n", MeasureRuntime(HeapSort, arr));
     destroyList(&arr);
+    */
+    /*******************TESTE-TEMPO EMPIRICO *********************
+    List arr;
+    
+    for(long i = 1000; i <= maxSize; i *= 10)
+    {
+        buildList(&arr);
+        srand(time(NULL));
+        for(long j = 0; j < i; j++)
+        {
+            int k = insert(&arr, rand());
+            if(k == Error)
+                break;
+        }
+        printf("%lf\n", QuickMeasureRuntime(quicksort, arr));
+    }
+    */
    return 0;
+}
+
+
+
+double MeasureRuntime(algorithm alg, List l)
+{
+    clock_t mTime;
+    mTime = clock();
+    alg(&l);
+    mTime = clock() - mTime;
+    return (double) mTime * 1000.0 / (double) CLOCKS_PER_SEC;
+}
+
+
+double QuickMeasureRuntime(quick alg, List l)
+{
+    clock_t mTime;
+    mTime = clock();
+    alg(&l, 0, l.length - 1);
+    mTime = clock() - mTime;
+    return (double) mTime * 1000.0 / (double) CLOCKS_PER_SEC;
 }

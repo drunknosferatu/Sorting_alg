@@ -2,7 +2,7 @@
 
 
 //***********************HeapSort************************************************************
-void MaxHeapfy(List *l, int i);            // Mantem a propriedade de max-heap
+void MaxHeapfy(List *l, long i);            // Mantem a propriedade de max-heap
 
 
 void BuildMaxHeap(List *l);                // Constroe uma max-heap a partir de uma lista
@@ -19,8 +19,8 @@ void RadixSort(List *l);
 
 
 
-int RandomInteger (int low, int high);                 //Funcao que gera numeros aleatorios. Foi criada 
-                                                       // por Eric Roberts, autor do livro The Art and Science of C
+int RandomInteger (long low, long high);                 // Funcao que gera numeros aleatorios. Foi criada 
+                                                         // por Eric Roberts, autor do livro The Art and Science of C
 
 long partition(List *l, long ini, long end);
 

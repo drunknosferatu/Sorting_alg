@@ -23,7 +23,7 @@ int insert(List *l, tpElem elem)
 
 void printList(List l)
 {
-    int i;
+    long i;
     for(i = 0; i < l.length; i++)
         printf("%d\t", l.elements[i]);
     printf("\n");
@@ -38,7 +38,7 @@ void destroyList(List *l)
 
 
 
-void swap(List *l, int i, int j)
+void swap(List *l, long i, long j)
 {
     tpElem aux = l->elements[i];
     l->elements[i] = l->elements[j];

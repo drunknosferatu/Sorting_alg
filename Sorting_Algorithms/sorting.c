@@ -2,7 +2,7 @@
 #include <math.h>
 //*********************HeapSort*********************************************
 
-void MaxHeapfy(List *l, int i)
+void MaxHeapfy(List *l, long i)
 {
     int left = 2 * i + 1;
     int right = 2 * i + 2;
@@ -93,7 +93,7 @@ void RadixSort(List *l)
 
 
 //*******************************QuickSort*******************************************
-int RandomInteger (int low, int high)
+int RandomInteger (long low, long high)
 {
     int k;
     double d;
