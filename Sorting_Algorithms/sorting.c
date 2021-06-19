@@ -50,9 +50,9 @@ void HeapSort(List *l)
 
 //**************************COUNTING SORT*****************************************
 
-void CountingSort(List *l, List *aux, int max){
+void CountingSort(List *l, List *aux, long max){
 	int i;
-	tpElem *c = (tpElem*) malloc((max+1) * sizeof(tpElem));
+	tpElem *c = (tpElem*) malloc((max + 1) * sizeof(tpElem));
 	for(i = 0; i <= max; i++) c[i] = 0;
 	tpElem *sorted = (tpElem*) malloc (l->length * sizeof(tpElem));
 	for(i = 0;i < l->length; i++) c[aux->elements[i]]++;
@@ -70,8 +70,8 @@ void CountingSort(List *l, List *aux, int max){
 //**************************** RADIX SORT**************************************
 void RadixSort(List *l)
 {
-	int max = l->elements[0];
-	int i, j, ordem, k, aux;
+	long max = l->elements[0];
+	long i, j, ordem, k;
 	for (i = 1; i < l->length; i++) if(max < l->elements[i]) max = l->elements[i];
 	for (ordem = 0; max / (int)(pow(10, ordem)) != 0;ordem++);
 	ordem--;
@@ -105,7 +105,7 @@ int RandomInteger (long low, long high)
 
 
 
-long partition(List *l, long ini, long end)
+long Partition(List *l, long ini, long end)
 {
     long pivot = l->elements[end];
     long i = ini - 1;
@@ -123,23 +123,23 @@ long partition(List *l, long ini, long end)
 
 
 
-long random_partition(List *l, long ini, long end)
+long RandomPartition(List *l, long ini, long end)
 {
     long k = RandomInteger(ini, end);
     swap(l, k, end);
-    return partition(l, ini, end);
+    return Partition(l, ini, end);
 }
 
 
 
-void quicksort(List *l, long ini, long end)
+void QuickSort(List *l, long ini, long end)
 {
     long pivot;
     if (ini < end)
     {
-        pivot = random_partition(l, ini, end);
-        quicksort(l, ini, pivot - 1);
-        quicksort(l, pivot + 1, end);
+        pivot = RandomPartition(l, ini, end);
+        QuickSort(l, ini, pivot - 1);
+        QuickSort(l, pivot + 1, end);
     }
 
 }

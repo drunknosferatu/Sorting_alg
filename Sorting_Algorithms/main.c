@@ -20,7 +20,7 @@ double QuickMeasureRuntime(quick alg, List l);   // Mede o tempo de execussão e
 int main(void){
     
     
-    /********************TESTE - ORDENACAO*********************************
+   /*******************TESTE****************************************************
     List arr;
     buildList(&arr); 
     int i, j;
@@ -37,11 +37,11 @@ int main(void){
         }    
     }
     //RadixSort(&arr);
-    //quicksort(&arr, 0, arr.length - 1);
-    printf("Tempo = %lf\n", MeasureRuntime(HeapSort, arr));
+    QuickSort(&arr, 0, arr.length - 1);
+    printList(arr);
     destroyList(&arr);
-    */
-    /*******************TESTE-TEMPO EMPIRICO *********************
+    ***************************************************************************/
+    /***************************TESTE*******************************************
     List arr;
     
     for(long i = 1000; i <= maxSize; i *= 10)
@@ -50,13 +50,14 @@ int main(void){
         srand(time(NULL));
         for(long j = 0; j < i; j++)
         {
-            int k = insert(&arr, rand());
+            int k = insert(&arr, rand() % (maxSize - 1));
             if(k == Error)
                 break;
         }
-        printf("%lf\n", QuickMeasureRuntime(quicksort, arr));
+        printf("%.10lf\n", MeasureRuntime(HeapSort, arr));
+        destroyList(&arr);
     }
-    */
+     */
    return 0;
 }
 
