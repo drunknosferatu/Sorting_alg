@@ -32,4 +32,8 @@ long RandomPartition(List *l, long ini, long end);
 
 void QuickSort(List *l, long ini, long end);
 
+void BubbleSort(List *l);
+
+void OptimizedBubbleSort(List *l);
+
 //*******************************************************************************************
