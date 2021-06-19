@@ -51,7 +51,7 @@ void HeapSort(List *l)
 //**************************COUNTING SORT*****************************************
 
 void CountingSort(List *l, List *aux, long max){
-	int i;
+	long i;
 	tpElem *c = (tpElem*) malloc((max + 1) * sizeof(tpElem));
 	for(i = 0; i <= max; i++) c[i] = 0;
 	tpElem *sorted = (tpElem*) malloc (l->length * sizeof(tpElem));
@@ -145,3 +145,33 @@ void QuickSort(List *l, long ini, long end)
 }
 
 //********************************************************************************************
+
+
+//*******************************BUBBLE SORT**************************************************
+void BubbleSort(List *l){
+    for (long i = 0; i < l->length; i++){
+        for (long j = 0; j < ((l->length)-i); j++){
+            if (l->elements[j] > l->elements[j+1]){
+                swap(l, j, j + 1);
+            }
+        }
+    }
+}
+
+void OptimizedBubbleSort(List *l){
+    int swapped = 1;
+
+    for (long i = 0; i < l->length; i++){
+        while (swapped == 1){
+            swapped = 0;
+            for (long j = 0; j < ((l->length)-i); j++){
+                if (l->elements[j] > l->elements[j+1]){
+                    swapped = 1;
+                    swap(l, j, j + 1);
+                }
+            }
+        }
+    }
+}
+
+//****************************************************************************
