@@ -73,7 +73,7 @@ void RadixSort(List *l)
 	long max = l->elements[0];
 	long i, j, ordem, k;
 	for (i = 1; i < l->length; i++) if(max < l->elements[i]) max = l->elements[i];
-	for (ordem = 0; max / (int)(pow(10, ordem)) != 0;ordem++);
+	for (ordem = 0; max / (long)(pow(10, ordem)) != 0;ordem++);
 	ordem--;
 	List temp;
 	buildList(&temp);
@@ -83,7 +83,7 @@ void RadixSort(List *l)
 		for(k = 0;k < l->length; k++)
                 { 
 			temp.elements[k] = l->elements[k];
-			for(j = ordem; j > i; j--) temp.elements[k] %= (int)pow(10, j);
+			for(j = ordem; j > i; j--) temp.elements[k] %= (long)pow(10, j);
 			temp.elements[k] /= pow(10, j);
 		}
 		CountingSort(l, &temp, max);
