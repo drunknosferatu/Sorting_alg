@@ -52,16 +52,16 @@ void HeapSort(List *l)
 
 void CountingSort(List *l,List *aux, long max){
 	long i;
-	long *c=(long*) malloc((max+1)*sizeof(tpElem));
-	for(i=0;i<=max;i++) c[i]=0;
-	long *sorted=(long*) malloc (l->length*sizeof(tpElem));
-	for(i=0;i<l->length;i++) c[aux->elements[i]]++;
-	for(i=1;i<=max;i++) c[i]=c[i]+c[i-1];
-	for(i=(l->length-1);i>=0;i--){
+	long *c=(long*) malloc((max+1)*sizeof(tpElem));//creates an auxiliary array
+	for(i=0;i<=max;i++) c[i]=0;//fills it with zeroes(calloc was not used due to efficiency improvement)
+	long *sorted=(long*) malloc (l->length*sizeof(tpElem));//creates other auxiliary array
+	for(i=0;i<l->length;i++) c[aux->elements[i]]++;//fills c with indexes
+	for(i=1;i<=max;i++) c[i]=c[i]+c[i-1];//modify the indexes to account for the number of occurences of the previous numbers
+	for(i=(l->length-1);i>=0;i--){//sorts
 	       	sorted[c[aux->elements[i]]-1]=l->elements[i];
 		c[aux->elements[i]]--;
 	}
-	l->elements=sorted;
+	l->elements=sorted;//does the permutations
 	free(c);
 }
 //*****************************************************************************
@@ -70,22 +70,22 @@ void CountingSort(List *l,List *aux, long max){
 void RadixSort(List *l){
 	long max=l->elements[0];
 	long i,j,mag,k,aux;
-	for (i=1;i<l->length;i++) 
+	for (i=1;i<l->length;i++)//this for loop finds the maximum value of the array 
 	    if(max<l->elements[i]) 
 	        max=l->elements[i];
-	for (mag=0;max/(long)(pow(10,mag))!=0;mag++);
+	for (mag=0;max/(long)(pow(10,mag))!=0;mag++);//this for loop determines the magnitude of the max value
 	mag--;
 	List temp;
 	buildList(&temp);
 	temp.length=l->length;
 	for(i=0;i<=mag;i++){
 		for(k=0;k<l->length;k++){ 
-			temp.elements[k]=l->elements[k];
+			temp.elements[k]=l->elements[k];//this is just some numerical "parsing"
 			for(j=mag;j>i;j--) 
 			    temp.elements[k]%=(long)pow(10,j);
 			temp.elements[k]/=pow(10,j);
 		}
-		CountingSort(l,&temp,max);
+		CountingSort(l,&temp,max);//sends the "parsed" array along with the original to be sorted
 	}
 	free(temp.elements);
 }
