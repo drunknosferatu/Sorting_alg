@@ -54,7 +54,7 @@ void CountingSort(List *l,List *aux, long max){
 	long i;
 	long *c=(long*) malloc((max+1)*sizeof(tpElem));
 	for(i=0;i<=max;i++) c[i]=0;
-	int *sorted=(long*) malloc (l->length*sizeof(tpElem));
+	long *sorted=(long*) malloc (l->length*sizeof(tpElem));
 	for(i=0;i<l->length;i++) c[aux->elements[i]]++;
 	for(i=1;i<=max;i++) c[i]=c[i]+c[i-1];
 	for(i=(l->length-1);i>=0;i--){
