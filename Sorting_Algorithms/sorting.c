@@ -50,47 +50,45 @@ void HeapSort(List *l)
 
 //**************************COUNTING SORT*****************************************
 
-void CountingSort(List *l, List *aux, long max){
+void CountingSort(List *l,List *aux, long max){
 	long i;
-	tpElem *c = (tpElem*) malloc((max + 1) * sizeof(tpElem));
-	for(i = 0; i <= max; i++) c[i] = 0;
-	tpElem *sorted = (tpElem*) malloc (l->length * sizeof(tpElem));
-	for(i = 0;i < l->length; i++) c[aux->elements[i]]++;
-	for(i = 1; i <= max; i++) c[i] = c[i] + c[i-1];
-	for(i = (l->length-1); i >= 0; i--)
-        {
-	       	sorted[c[aux->elements[i]] - 1] = l->elements[i];
+	long *c=(long*) malloc((max+1)*sizeof(tpElem));
+	for(i=0;i<=max;i++) c[i]=0;
+	int *sorted=(long*) malloc (l->length*sizeof(tpElem));
+	for(i=0;i<l->length;i++) c[aux->elements[i]]++;
+	for(i=1;i<=max;i++) c[i]=c[i]+c[i-1];
+	for(i=(l->length-1);i>=0;i--){
+	       	sorted[c[aux->elements[i]]-1]=l->elements[i];
 		c[aux->elements[i]]--;
 	}
-	l->elements = sorted;
+	l->elements=sorted;
 	free(c);
 }
 //*****************************************************************************
 
 //**************************** RADIX SORT**************************************
-void RadixSort(List *l)
-{
-	long max = l->elements[0];
-	long i, j, ordem, k;
-	for (i = 1; i < l->length; i++) if(max < l->elements[i]) max = l->elements[i];
-	for (ordem = 0; max / (long)(pow(10, ordem)) != 0;ordem++);
-	ordem--;
+void RadixSort(List *l){
+	long max=l->elements[0];
+	long i,j,mag,k,aux;
+	for (i=1;i<l->length;i++) 
+	    if(max<l->elements[i]) 
+	        max=l->elements[i];
+	for (mag=0;max/(long)(pow(10,mag))!=0;mag++);
+	mag--;
 	List temp;
 	buildList(&temp);
-	temp.length = l->length;
-	for(i = 0; i <= ordem; i++)
-        {
-		for(k = 0;k < l->length; k++)
-                { 
-			temp.elements[k] = l->elements[k];
-			for(j = ordem; j > i; j--) temp.elements[k] %= (long)pow(10, j);
-			temp.elements[k] /= pow(10, j);
+	temp.length=l->length;
+	for(i=0;i<=mag;i++){
+		for(k=0;k<l->length;k++){ 
+			temp.elements[k]=l->elements[k];
+			for(j=mag;j>i;j--) 
+			    temp.elements[k]%=(long)pow(10,j);
+			temp.elements[k]/=pow(10,j);
 		}
-		CountingSort(l, &temp, max);
+		CountingSort(l,&temp,max);
 	}
 	free(temp.elements);
 }
-
 
 //*******************************QuickSort*******************************************
 int RandomInteger (long low, long high)
