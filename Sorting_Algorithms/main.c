@@ -55,7 +55,7 @@ int main(void){
 		printf("Time at magnitude %ld for Method number %d:\n", i, method); 
 		printf("Random: %.10lf\n", results[0]);
 		printf("Sorted: %.10lf\n", results[1]);
-		printf("Inverted: %.10lf\n\n\n", results[2]);
+		printf("Inverted: %.10lf\n\n", results[2]);
     	}
      }
     free(results);
