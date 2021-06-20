@@ -7,7 +7,7 @@
 #define Error   0
 
 
-typedef int tpElem;                        // Podem mudar o nome deste tipo
+typedef long tpElem;                        // Podem mudar o nome deste tipo
 
 
 
