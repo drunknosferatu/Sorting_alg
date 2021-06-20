@@ -20,10 +20,13 @@ double* QuickMeasureRuntime(quick alg, List l);   // Mede o tempo de execussão 
 int main(void){
     List arr;
     int k;
+    int control;
     double* results = malloc(3 * sizeof(double));
     for(int method = 1; method < 2 ; method++)
     {
-	for(long i = 1000; i <= maxSize; i *= 10)
+	printf("Choose the maximum number of elements on a test array for method number %d: ", method);
+	scanf("%d", &control);
+	for(long i = 1000; i <= control; i *= 10)
 	{
 		buildList(&arr);
 		srand(time(NULL));
