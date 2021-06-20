@@ -20,10 +20,10 @@ double* QuickMeasureRuntime(quick alg, List l);   // Mede o tempo de execussão 
 int main(void){
     List arr;
     int k;
-    double* results = malloc(3*sizeof(double));
-    for(int method=1;method<6;method++)
+    double* results = malloc(3 * sizeof(double));
+    for(int method = 1; method < 2 ; method++)
     {
-	for(long i=1000; i <= maxSize; i*=10)
+	for(long i = 1000; i <= maxSize; i *= 10)
 	{
 		buildList(&arr);
 		srand(time(NULL));
@@ -52,10 +52,10 @@ int main(void){
 				break;
 		}
 		destroyList(&arr);
-		printf("Time at magnitude %ld for ", "Method number %d:\n", i, method); 
+		printf("Time at magnitude %ld for Method number %d:\n", i, method); 
 		printf("Random: %.10lf\n", results[0]);
 		printf("Sorted: %.10lf\n", results[1]);
-		printf("Inverted: %.10lf\n", results[2]);
+		printf("Inverted: %.10lf\n\n\n", results[2]);
     	}
      }
     free(results);
@@ -70,14 +70,14 @@ double* MeasureRuntime(algorithm alg, List l)
     double *results = (double*) malloc(3 * sizeof(double));
     mTime = clock();
     alg(&l);
-    mTime = clock() - mTime;
-    results[0] = (double) mTime * 1000.0 / (double) CLOCKS_PER_SEC;
+    results[0] = (double) (clock() - mTime) * 1000.0 / (double) CLOCKS_PER_SEC;
+    mTime = clock();
     alg(&l);
-    mTime = clock() - mTime;
-    results[1] = (double) mTime * 1000.0 / (double) CLOCKS_PER_SEC;
+    results[1] = (double) (clock() - mTime) * 1000.0 / (double) CLOCKS_PER_SEC;
     for(long i = 0; i < (l.length)/2 ; i++) swap(&l, i, (l.length - 1) - i);
+    mTime = clock();
     alg(&l);
-    results[2] = (double) mTime*1000.0 / (double) CLOCKS_PER_SEC;
+    results[2] = (double) (clock() - mTime) * 1000.0 / (double) CLOCKS_PER_SEC;
     return results;
 }
 
@@ -88,13 +88,13 @@ double* QuickMeasureRuntime(quick alg, List l)
     double *results = (double*) malloc(3 * sizeof(double));
     mTime = clock();
     alg(&l, 0, l.length - 1);
-    mTime = clock() - mTime;
-    results[0] = (double) mTime * 1000.0 / (double) CLOCKS_PER_SEC;
+    results[0] = (double) (clock() - mTime) * 1000.0 / (double) CLOCKS_PER_SEC;
+    mTime = clock();
     alg(&l, 0, l.length - 1);
-    mTime = clock() - mTime;
-    results[1] = (double) mTime * 1000.0 / (double) CLOCKS_PER_SEC;
+    results[1] = (double) (clock() - mTime) * 1000.0 / (double) CLOCKS_PER_SEC;
     for(long i = 0; i < (l.length)/2 ; i++) swap(&l, i, (l.length - 1) - i);
+    mTime = clock();
     alg(&l, 0, l.length - 1);
-    results[2] = (double) mTime*1000.0 / (double) CLOCKS_PER_SEC;
+    results[2] = (double) (clock() - mTime) * 1000.0 / (double) CLOCKS_PER_SEC;
     return results;
 }
