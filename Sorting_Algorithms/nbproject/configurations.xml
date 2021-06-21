@@ -39,6 +39,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <standard>10</standard>
+        </cTool>
       </compileType>
       <item path="List.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -60,6 +63,7 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <standard>10</standard>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>

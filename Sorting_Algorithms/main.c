@@ -22,7 +22,7 @@ int main(void){
     int k;
     int control;
     double* results = malloc(3 * sizeof(double));
-    for(int method = 1; method < 2 ; method++)
+    for(int method = 1; method < 6 ; method++)
     {
 	printf("Choose the maximum number of elements on a test array for method number %d: ", method);
 	scanf("%d", &control);
@@ -42,16 +42,16 @@ int main(void){
 				results = MeasureRuntime(HeapSort, arr);
 				break;
 			case 2:
-				results = MeasureRuntime(BubbleSort, arr);
-				break;
-			case 3:
 				results = QuickMeasureRuntime(QuickSort, arr);
 				break;
+			case 3:
+				results = MeasureRuntime(RadixSort, arr);
+				break;
 			case 4:
-        			results = MeasureRuntime(OptimizedBubbleSort, arr);
+        			results = MeasureRuntime(BubbleSort, arr);
 				break;
 			case 5:
-				results = MeasureRuntime(RadixSort, arr);
+				results = MeasureRuntime(OptimizedBubbleSort, arr);
 				break;
 		}
 		destroyList(&arr);
